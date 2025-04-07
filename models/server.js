@@ -1,13 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-const io = require('socket.io');
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
     this.server = require("http").createServer(this.app);
-    this.io = io(this.server);
+    this.io = require("socket.io")(this.server);
 
     this.paths = {}
 
@@ -34,11 +33,21 @@ class Server {
   }
 
   sockets() {
-    
+
+    this.io.on('connection', (socket) => {
+
+      console.log('Client connected');
+
+      socket.on('disconnect', () => {
+        console.log('Client disconnected');
+      });
+
+    });
+
   }
 
   listen() {
-    this.app.listen(this.port, () => {
+    this.server.listen(this.port, () => {
       console.log(`Server is running on port ${this.port}`);
     });
   }

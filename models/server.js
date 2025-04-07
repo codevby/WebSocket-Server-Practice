@@ -1,10 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const io = require('socket.io');
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
+    this.server = require("http").createServer(this.app);
+    this.io = io(this.server);
 
     this.paths = {}
 
@@ -13,6 +16,9 @@ class Server {
 
     //Routes
     this.routes();
+
+    //Sockets
+    this.sockets();
   }
 
   middlewares() {
@@ -25,6 +31,10 @@ class Server {
 
   routes() {
     // this.app.use(this.paths.auth, require("../routes/auth.routes"));
+  }
+
+  sockets() {
+    
   }
 
   listen() {

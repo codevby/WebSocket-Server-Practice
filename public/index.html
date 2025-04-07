@@ -3,11 +3,32 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+            crossorigin="anonymous">
         <title>Socket Client</title>
     </head>
-    <body>
-        <h1>Socket Client</h1>
+    <body class="container">
+        <h1 class="mt-2">Socket Client</h1>
         <hr>
+
+        <p>
+            Server Status:
+            <span id="lblOnline" style="color: green;">Online</span>
+            <span id="lblOffline" style="color: red;">Offline</span>
+        </p>
+
+        <div class="row">
+            <div class="col">
+                <input type="text" id="txtMessage" class="form-control"
+                    placeholder="Type a message...">
+            </div>
+            <div class="col">
+                <button id="btnSend" class="btn btn-primary">Send</button>
+            </div>
+        </div>
 
         <script src="/socket.io/socket.io.js"></script>
         <script src="./js/socket-client.js"></script>

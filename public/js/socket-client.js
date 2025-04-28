@@ -27,5 +27,7 @@ btnSend.addEventListener('click', () => {
     id: 'idExample123',
   }
 
-  socket.emit('message', payload);
+  socket.emit('message', payload, ( id ) => {
+    console.log('In the client from the server:', id);
+  } );
 });
